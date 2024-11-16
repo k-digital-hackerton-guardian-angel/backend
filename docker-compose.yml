@@ -16,7 +16,7 @@ services:
     build: .
     command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - .:/code
+      - ./app:/code/app
     expose:
       - "8000"
     depends_on:

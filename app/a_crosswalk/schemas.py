@@ -1,0 +1,62 @@
+from ninja import Schema
+
+class CrosswalkSchemaOut(Schema):
+    id: int
+    ctprvnNm: str
+    signguNm: str
+    roadNm: str
+    rdnmadr: str
+    lnmadr: str
+    crslkManageNo: str
+    crslkKnd: str
+    bcyclCrslkCmbnatYn: bool
+    highlandYn: bool
+    latitude: float
+    longitude: float
+    cartrkCo: int
+    bt: str
+    et: str
+    tfclghtYn: bool
+    fnctngSgngnrYn: bool
+    sondSgngnrYn: bool
+    greenSgngnrTime: str
+    redSgngnrTime: str
+    tfcilndYn: bool
+    ftpthLowerYn: bool
+    brllBlckYn: bool
+    cnctrLghtFcltyYn: bool
+    institutionNm: str
+    phoneNumber: str
+    referenceDate: str
+    instt_code: str
+    management: int
+
+class CrosswalkSchemaIn(Schema):
+    ctprvnNm: str
+    signguNm: str
+    roadNm: str
+    rdnmadr: str
+    lnmadr: str
+    crslkManageNo: str
+    crslkKnd: str
+    bcyclCrslkCmbnatYn: bool
+    highlandYn: bool
+    latitude: float
+    longitude: float
+    cartrkCo: int
+    bt: str
+    et: str
+    tfclghtYn: bool
+    fnctngSgngnrYn: bool
+    sondSgngnrYn: bool
+    greenSgngnrTime: str
+    redSgngnrTime: str
+    tfcilndYn: bool
+    ftpthLowerYn: bool
+    brllBlckYn: bool
+    cnctrLghtFcltyYn: bool
+    institutionNm: str
+    phoneNumber: str
+    referenceDate: str
+    instt_code: str
+    management: int
