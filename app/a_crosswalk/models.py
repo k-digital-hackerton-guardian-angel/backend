@@ -29,6 +29,22 @@ class Crosswalk(Common):
     phoneNumber = models.CharField(max_length=20) # 관리기관전화번호
     referenceDate = models.DateField() # 데이터기준일자
     instt_code = models.CharField(max_length=50) # 제공기관코드
+    management = models.OneToOneField(
+        'CrosswalkManagement',
+        on_delete=models.CASCADE,
+        related_name='crosswalk'
+    )
 
     def __str__(self):
         return self.lnmadr
+
+class CrosswalkManagement(models.Model):
+    alias = models.CharField(max_length=100)           # 횡단보도 별칭
+    extension_time = models.TimeField()                # 연장시간
+    application_time = models.TimeField()              # 적용시간
+    is_active = models.BooleanField(default=True)      # 활성화
+
+    def __str__(self):
+        return f"Management for {self.crosswalk.lnmadr}"
+
+
