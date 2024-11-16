@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
 RUN pip install --upgrade pip
 RUN pip install poetry
 
-# Copy only the necessary project files first
+# Copy project files
 COPY app/ /code/app/
 
 # Copy pyproject.toml and poetry.lock
@@ -29,6 +29,9 @@ RUN poetry config virtualenvs.create false
 
 # Install Python dependencies
 RUN poetry install --only main
+
+# Create staticfiles directory
+RUN mkdir -p /code/app/staticfiles
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
