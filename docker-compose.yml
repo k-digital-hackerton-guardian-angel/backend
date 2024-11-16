@@ -27,6 +27,7 @@ services:
       - DATABASE_PASSWORD=securepassword
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
+    working_dir: /code/app
 
 volumes:
   postgres_data:

@@ -6,7 +6,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set work directory
-WORKDIR /code
+WORKDIR /code/app
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -19,7 +19,7 @@ RUN pip install --upgrade pip
 RUN pip install poetry
 
 # Copy project files
-COPY pyproject.toml poetry.lock /code/
+COPY pyproject.toml poetry.lock /code/app/
 
 # Configure Poetry to not create a virtual environment
 RUN poetry config virtualenvs.create false
@@ -28,7 +28,7 @@ RUN poetry config virtualenvs.create false
 RUN poetry install --only main
 
 # Copy the rest of the project
-COPY . /code/
+COPY . /code/app/
 
 # Collect static files
 RUN python manage.py collectstatic --noinput
