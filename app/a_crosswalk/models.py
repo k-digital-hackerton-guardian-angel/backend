@@ -29,6 +29,7 @@ class Crosswalk(Common):
     phoneNumber = models.CharField(max_length=20) # 관리기관전화번호
     referenceDate = models.DateField() # 데이터기준일자
     instt_code = models.CharField(max_length=50) # 제공기관코드
+    instt_name = models.CharField(max_length=100) # 제공기관명
     management = models.OneToOneField(
         'CrosswalkManagement',
         on_delete=models.CASCADE,
