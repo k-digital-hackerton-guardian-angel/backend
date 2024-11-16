@@ -14,20 +14,32 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn app.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/code
-    ports:
-      - "8000:8000"
+    expose:
+      - "8000"
     depends_on:
       - db
     environment:
+      - DATABASE_ENGINE=django.db.backends.postgresql
       - DATABASE_NAME=guardian_angel_db
       - DATABASE_USER=guardian_user
       - DATABASE_PASSWORD=securepassword
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
     working_dir: /code/app
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./app/staticfiles:/code/app/staticfiles
+      - ./app/media:/code/app/media
+    depends_on:
+      - web
 
 volumes:
   postgres_data:
