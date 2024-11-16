@@ -21,3 +21,14 @@ cd app
 ```
 python manage.py runserver
 ```
+
+
+
+
+
+
+
+
+활용 api
+CSV 전국횡단보도표준데이터
+https://www.data.go.kr/data/15028201/standard.do
