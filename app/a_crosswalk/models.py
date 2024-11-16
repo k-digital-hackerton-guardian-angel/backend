@@ -1,7 +1,7 @@
 from django.db import models
+from a_common.models import Common
 
-
-class Crosswalk(models.Model):
+class Crosswalk(Common):
     ctprvnNm = models.CharField(max_length=100) # 시도명
     signguNm = models.CharField(max_length=100) # 시군구명
     roadNm = models.CharField(max_length=100) # 도로명
