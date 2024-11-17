@@ -1,38 +1,27 @@
 # app/a_crosswalk/api.py
 
-from ninja import Router
+from ninja import Router, Query
 from typing import List
 from .models import Crosswalk
 from django.shortcuts import get_object_or_404
-from .schemas import CrosswalkSchemaOut, CrosswalkSchemaIn
+from .schemas import CrosswalkSchemaOut, CrosswalkSchemaIn, BoundingBoxSchema
 
 router = Router()
 
-@router.get("/crosswalks", response=List[CrosswalkSchemaOut])
-def list_crosswalks(request):
-    qs = Crosswalk.objects.all()
-    return qs
-
-@router.get("/crosswalks/{crosswalk_id}", response=CrosswalkSchemaOut)
-def get_crosswalk(request, crosswalk_id: int):
-    crosswalk = get_object_or_404(Crosswalk, id=crosswalk_id)
-    return crosswalk
-
-@router.post("/crosswalks", response=CrosswalkSchemaOut)
-def create_crosswalk(request, data: CrosswalkSchemaIn):
-    crosswalk = Crosswalk.objects.create(**data.dict())
-    return crosswalk
-
-@router.put("/crosswalks/{crosswalk_id}", response=CrosswalkSchemaOut)
-def update_crosswalk(request, crosswalk_id: int, data: CrosswalkSchemaIn):
-    crosswalk = get_object_or_404(Crosswalk, id=crosswalk_id)
-    for attr, value in data.dict().items():
-        setattr(crosswalk, attr, value)
-    crosswalk.save()
-    return crosswalk
-
-@router.delete("/crosswalks/{crosswalk_id}", response={200: str})
-def delete_crosswalk(request, crosswalk_id: int):
-    crosswalk = get_object_or_404(Crosswalk, id=crosswalk_id)
-    crosswalk.delete()
-    return 200, "Crosswalk deleted successfully."
+@router.get("/area", response=List[CrosswalkSchemaOut])
+def get_crosswalks_in_area(
+    request,
+    bounds: BoundingBoxSchema = Query(...)
+):
+    min_latitude = min(bounds.min_lat, bounds.max_lat)
+    max_latitude = max(bounds.min_lat, bounds.max_lat)
+    min_longitude = min(bounds.min_lng, bounds.max_lng)
+    max_longitude = max(bounds.min_lng, bounds.max_lng)
+    
+    crosswalks = Crosswalk.objects.filter(
+        latitude__gte=min_latitude,
+        latitude__lte=max_latitude,
+        longitude__gte=min_longitude,
+        longitude__lte=max_longitude
+    )[:30]
+    return crosswalks
