@@ -10,33 +10,48 @@ class CrosswalkManagementAdmin(admin.ModelAdmin):
 @admin.register(Crosswalk)
 class CrosswalkAdmin(admin.ModelAdmin):
     list_display = ('crslkManageNo', 'ctprvnNm', 'signguNm', 'roadNm', 'created_at')
-    list_filter = ('ctprvnNm', 'signguNm', 'tfclghtYn', 'bcyclCrslkCmbnatYn')
-    search_fields = ('crslkManageNo', 'roadNm', 'rdnmadr', 'lnmadr')
+    list_filter = (
+        'ctprvnNm', 
+        'signguNm', 
+        'tfclghtYn', 
+        'bcyclCrslkCmbnatYn',
+        'highlandYn',
+        'sondSgngnrYn'
+    )
+    search_fields = (
+        'crslkManageNo', 
+        'roadNm', 
+        'rdnmadr', 
+        'lnmadr',
+        'institutionNm',
+        'instt_name'
+    )
     date_hierarchy = 'created_at'
     readonly_fields = ('created_at', 'updated_at')
+    
     fieldsets = (
-        ('Basic Information', {
+        ('기본 정보', {
             'fields': ('management', 'crslkManageNo', 'crslkKnd')
         }),
-        ('Location', {
+        ('위치 정보', {
             'fields': ('ctprvnNm', 'signguNm', 'roadNm', 'rdnmadr', 'lnmadr', 'latitude', 'longitude')
         }),
-        ('Features', {
+        ('횡단보도 특성', {
             'fields': ('bcyclCrslkCmbnatYn', 'highlandYn', 'cartrkCo', 'tfclghtYn', 'tfcilndYn')
         }),
-        ('Signals', {
+        ('신호 시스템', {
             'fields': ('fnctngSgngnrYn', 'sondSgngnrYn', 'greenSgngnrTime', 'redSgngnrTime')
         }),
-        ('Time Settings', {
+        ('시간 설정', {
             'fields': ('bt', 'et')
         }),
-        ('Additional Features', {
+        ('추가 기능', {
             'fields': ('ftpthLowerYn', 'brllBlckYn', 'cnctrLghtFcltyYn')
         }),
-        ('Institution Information', {
+        ('기관 정보', {
             'fields': ('institutionNm', 'instt_name', 'instt_code', 'phoneNumber', 'referenceDate')
         }),
-        ('Metadata', {
+        ('메타데이터', {
             'fields': ('created_at', 'updated_at'),
             'classes': ('collapse',)
         }),
