@@ -36,6 +36,9 @@ RUN mkdir -p /code/app/staticfiles
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
+# Copy static files
+COPY ./app/staticfiles /app/staticfiles
+
 # Expose port 8000
 EXPOSE 8000
 

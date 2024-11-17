@@ -17,6 +17,7 @@ services:
     command: gunicorn core.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - ./app:/code/app
+      - static_volume:/app/staticfiles
     expose:
       - "8000"
     depends_on:
@@ -43,3 +44,4 @@ services:
 
 volumes:
   postgres_data:
+  static_volume:
