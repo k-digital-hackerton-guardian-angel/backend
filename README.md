@@ -25,6 +25,15 @@ python manage.py runserver
 
 
 
+### json데이터 임포트
+```
+python manage.py excel_to_json data/crosswalk-initial-data.xls data/crosswalk-data.json
+```
+
+```
+docker-compose exec web python manage.py excel_to_json data/crosswalk-initial-data.xls data/crosswalk-data.json
+```
+
 
 
 
