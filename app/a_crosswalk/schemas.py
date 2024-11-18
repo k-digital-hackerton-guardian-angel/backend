@@ -32,6 +32,9 @@ class CrosswalkSchemaOut(Schema):
     referenceDate: str
     instt_code: str
     management: int
+    increaseInGreenTime30: Optional[int] = None
+    increaseInGreenTime50: Optional[int] = None
+    
 
     @staticmethod
     def resolve_bt(obj) -> str:
@@ -86,6 +89,8 @@ class CrosswalkSchemaIn(Schema):
     referenceDate: str
     instt_code: str
     management: int
+    increaseInGreenTime30: Optional[int] = None
+    increaseInGreenTime50: Optional[int] = None
 
 class BoundingBoxSchema(Schema):
     min_lat: float

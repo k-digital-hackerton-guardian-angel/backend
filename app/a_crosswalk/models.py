@@ -30,6 +30,8 @@ class Crosswalk(Common):
     referenceDate = models.DateField() # 데이터기준일자
     instt_code = models.CharField(max_length=50) # 제공기관코드
     instt_name = models.CharField(max_length=100) # 제공기관명
+    increaseInGreenTime30 = models.IntegerField(null=True) # 녹색신호시간 증가 30%
+    increaseInGreenTime50 = models.IntegerField(null=True) # 녹색신호시간 증가 50%
     management = models.OneToOneField(
         'CrosswalkManagement',
         on_delete=models.CASCADE,
