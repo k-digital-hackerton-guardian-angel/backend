@@ -32,7 +32,6 @@ class CrosswalkSchemaOut(Schema):
     referenceDate: str
     instt_code: str
     management: int
-    increaseInGreenTime30: Optional[int] = None
     increaseInGreenTime50: Optional[int] = None
     applyTimeFrom: Optional[str] = None
     applyTimeTo: Optional[str] = None
