@@ -34,6 +34,8 @@ class CrosswalkSchemaOut(Schema):
     management: int
     increaseInGreenTime30: Optional[int] = None
     increaseInGreenTime50: Optional[int] = None
+    applyTimeFrom: Optional[str] = None
+    applyTimeTo: Optional[str] = None
     
 
     @staticmethod
@@ -59,6 +61,14 @@ class CrosswalkSchemaOut(Schema):
     @staticmethod
     def resolve_management(obj) -> int:
         return obj.management.id if obj.management else None
+    
+    @staticmethod
+    def resolve_applyTimeFrom(obj) -> str:
+        return obj.applyTimeFrom.strftime('%H:%M:%S') if obj.applyTimeFrom else '00:00:00'
+    
+    @staticmethod
+    def resolve_applyTimeTo(obj) -> str:
+        return obj.applyTimeTo.strftime('%H:%M:%S') if obj.applyTimeTo else '00:00:00'
 
 class CrosswalkSchemaIn(Schema):
     ctprvnNm: str
