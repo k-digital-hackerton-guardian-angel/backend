@@ -91,6 +91,8 @@ class CrosswalkSchemaIn(Schema):
     management: int
     increaseInGreenTime30: Optional[int] = None
     increaseInGreenTime50: Optional[int] = None
+    applyTimeFrom: Optional[str] = None
+    applyTimeTo: Optional[str] = None
 
 class BoundingBoxSchema(Schema):
     min_lat: float

@@ -32,6 +32,9 @@ class Crosswalk(Common):
     instt_name = models.CharField(max_length=100) # 제공기관명
     increaseInGreenTime30 = models.IntegerField(null=True) # 녹색신호시간 증가 30%
     increaseInGreenTime50 = models.IntegerField(null=True) # 녹색신호시간 증가 50%
+    applyTimeFrom = models.TimeField(null=True) # 녹색신호시간 증가 50%
+    applyTimeTo = models.TimeField(null=True) # 녹색신호시간 증가 50%
+    
     management = models.OneToOneField(
         'CrosswalkManagement',
         on_delete=models.CASCADE,
