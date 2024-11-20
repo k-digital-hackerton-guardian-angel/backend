@@ -21,7 +21,7 @@ def get_crosswalks_in_area(request, bounds: BoundingBoxSchema = Query(...)):
         latitude__lte=max_latitude,
         longitude__gte=min_longitude,
         longitude__lte=max_longitude,
-    )[:500]
+    )[:30]
     return crosswalks
 
 
